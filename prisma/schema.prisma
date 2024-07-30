@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model utilsateurs {
+  utilisateur_id String         @id @default(auto()) @map("_id") @db.ObjectId
+  email          String
+  motDePasse     String
+  empruntsId     String[]       @db.ObjectId
+  emprunt        emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
+  notiId         String[]       @db.ObjectId
+  notif          notification[] @relation(fields: [notiId], references: [notification_id])
+}
+
+model emprunts {
+  emprunts_id   String        @id @default(auto()) @map("_id") @db.ObjectId
+  dateEmprunt   DateTime
+  dateRetour    DateTime
+  utulisateurId String[]      @db.ObjectId
+  utilisateur   utilsateurs[] @relation(fields: [utulisateurId], references: [utilisateur_id])
+  livreId       String[]      @db.ObjectId
+  livre         livres[]      @relation(fields: [livreId], references: [livres_id])
+}
+
+model livres {
+  livres_id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  titre            String
+  auteur           String
+  description      String
+  anneePublication Int
+  ISBN             String
+  notiId           String[]       @db.ObjectId
+  notif            notification[] @relation(fields: [notiId], references: [notification_id])
+  empruntsId       String[]       @db.ObjectId
+  emprunt          emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
+}
+
+model notification {
+  notification_id String        @id @default(auto()) @map("_id") @db.ObjectId
+  message         String
+  utulisateurId   String[]      @db.ObjectId
+  utilisateur     utilsateurs[] @relation(fields: [utulisateurId], references: [utilisateur_id])
+  livreId         String[]      @db.ObjectId
+  livre           livres[]      @relation(fields: [livreId], references: [livres_id])
+}
