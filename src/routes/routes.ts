@@ -6,7 +6,8 @@ const route = Router()
 // routes user
 
 route.get('/', controllersuser.getAll)
-route.post('/', controllersuser.postUser)
+route.post('/singnup', controllersuser.postUser)
+route.get('/login', controllersuser.getUserMail)
 
 
 
