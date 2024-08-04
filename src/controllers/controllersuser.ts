@@ -4,6 +4,8 @@ import { HttpCode } from "../core/constants";
 import bcrypt from 'bcrypt'
 import sendMail from "../send mail/sendmail";
 import token from "../token/token";
+
+
 const prisma = new PrismaClient()
 
 
@@ -107,13 +109,23 @@ const prisma = new PrismaClient()
         try {
             const { email} = req.body
             const status = await prisma.utilsateurs.findUnique({
-                where: email
+                where:{
+                     email
+                },
+                select: {
+                  utilisateur_id: true,
+                  name: true,
+                  email: true
+
+                }
             })
-            if (!status){
-                res.json({msg: "l'utilisateur n'existe pas"}).status(HttpCode.BAD_REQUEST)
-            } else {
-                
+            const accessToken = req.headers.authorization?.replace('initiale','')
+            if(!accessToken){
+                res.json({msg: 'l"utilisateur n"est pas connecter'})
+            } else{
+                res.json(status).status(HttpCode.OK)
             }
+           
         } catch (error) {
             console.error(error)
         }
@@ -135,8 +147,8 @@ const prisma = new PrismaClient()
                     motDePasse: hash
                 }
             })
-            if (updateUser) res.status(HttpCode.OK).json({ msg: "User succesfully updated" })
-            else res.status(HttpCode.BAD_REQUEST).json({ msg: "enterd correct infos" })
+            if (updateUser) res.status(HttpCode.OK).json({ msg: "User  updated" })
+            else res.status(HttpCode.BAD_REQUEST).json({ msg: "enter correct infos" })
         } catch (error) {
             console.error(error)
         }
