@@ -17,7 +17,7 @@ model utilsateurs {
   utilisateur_id String         @id @default(auto()) @map("_id") @db.ObjectId
   email          String @unique
   name           String
-  motDePasse     String @unique
+  motDePasse     String 
   empruntsId     String[]       @db.ObjectId
   emprunt        emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
   notiId         String[]       @db.ObjectId

@@ -4,6 +4,7 @@ import { create } from 'domain';
 import { verify } from 'crypto';
 import { token, token } from 'morgan';
 import { decode } from 'punycode';
+import { Prisma } from '@prisma/client';
 
 
 
@@ -26,6 +27,7 @@ const token = {
     decodeAccessrefreshToken : (token: string) => {
         return jwt.decode(token)
     },
+    
 }
 
 export default token

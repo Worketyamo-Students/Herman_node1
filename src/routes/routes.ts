@@ -7,7 +7,9 @@ const route = Router()
 
 route.get('/', controllersuser.getAll)
 route.post('/singnup', controllersuser.postUser)
-route.get('/login', controllersuser.getUserMail)
+route.post('/login', controllersuser.Userlogin)
+route.post('/logout', controllersuser.LogoutUser)
+route.delete('/', controllersuser.deleteAllUser)
 
 
 
