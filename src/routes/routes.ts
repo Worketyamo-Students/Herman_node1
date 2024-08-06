@@ -11,6 +11,7 @@ route.post('/login', controllersuser.Userlogin)
 route.post('/logout', controllersuser.LogoutUser)
 route.get('/profile', controllersuser.getUserId)
 route.put('/profile/:id', controllersuser.updateUser)
+route.delete('/profile', controllersuser.deleteUserAccount)
 route.delete('/', controllersuser.deleteAllUser)
 
 
