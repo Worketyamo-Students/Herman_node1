@@ -15,9 +15,9 @@ datasource db {
 
 model utilsateurs {
   utilisateur_id String         @id @default(auto()) @map("_id") @db.ObjectId
-  email          String @unique
+  email          String         @unique
   name           String
-  motDePasse     String 
+  motDePasse     String
   empruntsId     String[]       @db.ObjectId
   emprunt        emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
   notiId         String[]       @db.ObjectId
@@ -36,10 +36,10 @@ model emprunts {
 
 model livres {
   livres_id        String         @id @default(auto()) @map("_id") @db.ObjectId
-  titre            String
+  titre            String         @unique
   auteur           String
   description      String
-  anneePublication Int
+  anneePublication DateTime
   ISBN             String
   notiId           String[]       @db.ObjectId
   notif            notification[] @relation(fields: [notiId], references: [notification_id])

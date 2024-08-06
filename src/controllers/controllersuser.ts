@@ -4,7 +4,6 @@ import { HttpCode } from "../core/constants";
 import bcrypt from 'bcrypt'
 import sendMail from "../send mail/sendmail";
 import token from "../token/token";
-import authAccess from "../middlewares/middlewares";
 
 
 const prisma = new PrismaClient()

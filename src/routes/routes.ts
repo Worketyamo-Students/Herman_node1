@@ -1,5 +1,6 @@
 import { Router } from "express";
 import controllersuser from "../controllers/controllersuser";
+import controllersBooks from "../controllers/books";
 
 const route = Router()
 
@@ -13,6 +14,9 @@ route.get('/profile', controllersuser.getUserId)
 route.put('/profile/:id', controllersuser.updateUser)
 route.delete('/profile', controllersuser.deleteUserAccount)
 route.delete('/', controllersuser.deleteAllUser)
+
+//route books
+route.get('/', controllersBooks.allBooks)
 
 
 
