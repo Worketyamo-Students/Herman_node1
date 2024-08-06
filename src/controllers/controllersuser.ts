@@ -4,6 +4,7 @@ import { HttpCode } from "../core/constants";
 import bcrypt from 'bcrypt'
 import sendMail from "../send mail/sendmail";
 import token from "../token/token";
+import authAccess from "../middlewares/middlewares";
 
 
 const prisma = new PrismaClient()
@@ -49,22 +50,24 @@ const prisma = new PrismaClient()
         
         if (email){
             const logtoken = await bcrypt.compare(motDePasse, user.motDePasse)
-            if (logtoken){
+           if (!logtoken){
+            return res.status(HttpCode.BAD_REQUEST).json({msg: "verify your information"})
+           }
+           //ici on masque le mot de passe du user avant d'envoyer de renvoyer l'objet au client pour plus de securité
+           user.motDePasse= '' 
+
+
+            
                 const acceptoken = token.createToken(user)
-                const refusetoken = token.refreshtoken(user)
+                const refreshtoken = token.refreshtoken(user)
                 
-                res.cookie("user_connect", refusetoken,{
+                res.cookie("user_cookie", refreshtoken,{
                     httpOnly: true, 
                     secure: true,
                     maxAge : 30 * 24 * 60 * 1000
                 })
                 console.log(acceptoken);
                 res.status(HttpCode.OK).json({msg: "votre token a ete generate"})
-            }else{
-                res.json({msg : "information invalide"})
-            }
-
-            res.status(HttpCode.NO_CONTENT).json({msg: "verifier vos information"})
         } else {
             res.json({msg: "l'utilisateur n'existe pas"}).status(HttpCode.NOT_FOUND)
         }
@@ -88,7 +91,7 @@ const prisma = new PrismaClient()
                 if (!accessToken || !refreshToken){
                     return res.status(HttpCode.BAD_REQUEST).json({ msg: "No token available or expired" });
                 }
-                const decodedUser = await token.verifyAccessToken(accessToken);
+                const decodedUser =  token.verifyAccessToken(accessToken);
                 
                 if (decodedUser) {
                     res.clearCookie(`${user.name}-cookie`)
