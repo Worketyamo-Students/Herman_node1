@@ -5,6 +5,10 @@ const books = Router()
 
 //route books
 books.get('/', controllersBooks.allBooks)
+books.post('/', controllersBooks.postBooks)
+books.put('/:id', controllersBooks.putBooks)
+books.delete('/:id', controllersBooks.deleteBooks)
+
 
 
 

@@ -8,6 +8,9 @@ import morgan from 'morgan';
 import { ONE_HUNDRED, SIXTY } from './core/constants';
 import route from './routes/routes'
 import books from './routes/books';
+import emprunt from './routes/emprunt';
+import notif from './routes/notif';
+
 
 const app = express();
 app.use(express.json());
@@ -24,5 +27,7 @@ app.use(
 app.use(morgan('combined'));
 app.use('/users', route)
 app.use('/books', books)
+app.use('/loans', emprunt)
+app.use(notif)
 setupSwagger(app);
 export default app;
