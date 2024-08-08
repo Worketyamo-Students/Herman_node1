@@ -2,7 +2,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import { HttpCode } from '../core/constants';
-import emprunt from '../routes/emprunt';
 
 const prisma = new PrismaClient();
 
