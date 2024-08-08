@@ -293,6 +293,11 @@
   resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-2.0.4.tgz#7eb47726c391b7345a6ec35ad7f4de469cf5ba4f"
   integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
 
+"@types/isbn-utils@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@types/isbn-utils/-/isbn-utils-1.1.6.tgz#86bfe7a845807f6a0cbd7adbab41976540d85568"
+  integrity sha512-MJmXddZpDqiQznI/vtw51ojpdEEC84dPT7TIUZ179Cy98xTYUGA3sXrGcRnTrov2TS70mRlZ46yM/KjztZJynQ==
+
 "@types/json-schema@^7.0.6":
   version "7.0.15"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
@@ -316,6 +321,14 @@
   integrity sha512-iRYSDKVaC6FkGSpEVVIvrRGw0DfJMiQzIn3qr2G5B3C//AWkulhXgaBd7tS9/J79GWSYMTHGs7PfI5b3Y8m+RQ==
   dependencies:
     "@types/node" "*"
+
+"@types/node-isbn@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@types/node-isbn/-/node-isbn-1.6.4.tgz#422acc83850f9c415d4a06a4543e18b711d13735"
+  integrity sha512-SKqE4/fuLWQRHQUzbeKgVEy9Tnh8L6HHzFmTGUgP+c5vmW5us6UmT6I3o4nOnXOw9b249PRP5XMTTfdg6NcwqQ==
+  dependencies:
+    "@types/node" "*"
+    axios "^0.21.1"
 
 "@types/node@*", "@types/node@^20.14.8":
   version "20.14.8"
@@ -571,6 +584,13 @@ array-union@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
+
+axios@^0.21.1:
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+  dependencies:
+    follow-redirects "^1.14.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1186,6 +1206,11 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
   integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
 
+follow-redirects@^1.14.0:
+  version "1.15.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
+  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
+
 foreground-child@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/foreground-child/-/foreground-child-3.2.1.tgz#767004ccf3a5b30df39bed90718bab43fe0a59f7"
@@ -1472,6 +1497,11 @@ is-path-inside@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-3.0.3.tgz#d231362e53a07ff2b0e0ea7fed049161ffd16283"
   integrity sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==
+
+isbn-utils@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/isbn-utils/-/isbn-utils-1.1.0.tgz#d0d97f302c307d7834e8c4ced5e36495f1f95e02"
+  integrity sha512-IrWfYWHqRficGId19f3d6h0zTdBYp/jToRcg/0LVLtonSR+sIxj+chWb9qdQAN3WYydMmHTtKDvTqeUO4XyzAA==
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -1777,6 +1807,13 @@ node-fetch@^2.6.7:
   integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
   dependencies:
     whatwg-url "^5.0.0"
+
+node-isbn@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/node-isbn/-/node-isbn-1.6.1.tgz#e4b42e302633aae2b7f0652434de05bcd39db380"
+  integrity sha512-OHxpA5xfi7K0iTbqxPpeGlueRA3dasHDRwaKkCWkscLoaKvI8e4mn8yfHrYL0zCJhWq8A2cdrZNbAsHvm7ASwg==
+  dependencies:
+    axios "^0.21.1"
 
 nodemailer@^6.9.14:
   version "6.9.14"

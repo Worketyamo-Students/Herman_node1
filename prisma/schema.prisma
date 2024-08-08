@@ -18,20 +18,18 @@ model utilsateurs {
   email          String         @unique
   name           String
   motDePasse     String
-  empruntsId     String[]       @db.ObjectId
-  emprunt        emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
-  notiId         String[]       @db.ObjectId
-  notif          notification[] @relation(fields: [notiId], references: [notification_id])
+  emprunt        emprunts[]
+  notif          notification[]
 }
 
 model emprunts {
-  emprunts_id   String        @id @default(auto()) @map("_id") @db.ObjectId
-  dateEmprunt   DateTime
-  dateRetour    DateTime
-  utulisateurId String[]      @db.ObjectId
-  utilisateur   utilsateurs[] @relation(fields: [utulisateurId], references: [utilisateur_id])
-  livreId       String[]      @db.ObjectId
-  livre         livres[]      @relation(fields: [livreId], references: [livres_id])
+  emprunts_id String      @id @default(auto()) @map("_id") @db.ObjectId
+  dateEmprunt DateTime    @default(now())
+  dateRetour  DateTime    @updatedAt
+  author      utilsateurs @relation(fields: [authorID], references: [utilisateur_id])
+  authorID    String      @db.ObjectId
+  livreId     String      @db.ObjectId
+  livre       livres      @relation(fields: [livreId], references: [livres_id])
 }
 
 model livres {
@@ -39,19 +37,17 @@ model livres {
   titre            String         @unique
   auteur           String
   description      String
-  anneePublication DateTime
-  ISBN             String
-  notiId           String[]       @db.ObjectId
-  notif            notification[] @relation(fields: [notiId], references: [notification_id])
-  empruntsId       String[]       @db.ObjectId
-  emprunt          emprunts[]     @relation(fields: [empruntsId], references: [emprunts_id])
+  anneePublication Int
+  ISBN             String         @unique
+  disponibilite    Boolean        @default(true)
+  notif            notification[]
+  emprunt          emprunts[]
 }
 
 model notification {
-  notification_id String        @id @default(auto()) @map("_id") @db.ObjectId
-  message         String
-  utulisateurId   String[]      @db.ObjectId
-  utilisateur     utilsateurs[] @relation(fields: [utulisateurId], references: [utilisateur_id])
-  livreId         String[]      @db.ObjectId
-  livre           livres[]      @relation(fields: [livreId], references: [livres_id])
+  notification_id String      @id @default(auto()) @map("_id") @db.ObjectId
+  author          utilsateurs @relation(fields: [authorID], references: [utilisateur_id])
+  authorID        String      @db.ObjectId
+  livreId         String      @db.ObjectId
+  livre           livres      @relation(fields: [livreId], references: [livres_id])
 }
